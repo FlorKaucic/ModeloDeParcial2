@@ -1,0 +1,27 @@
+/*
+
+Modelo de parcial:
+1. Hacer un main y una funcion que reciba una cadena y un numero entero, si el numero es par hacer girar los caracteres de la cadena a la derecha, si es impar a la izquierda
+Girar = rotar
+Rotas la cantidad de posiciones como indica el numero
+
+2. Dada una matriz y un i,j retornar de forma dinamica la mayor submatriz que tenga como vertice al i,j dado
+
+3. Dada una lista (clave cant (nroreg(5char) + cod(3letras))) simplemente enlazada desordenada con claves repetidas y un archivo (donde la clave de la lista coincide con el numero de registro (cant))
+
+Ejemplo
+00100AAA
+00101BEB
+00102CEO
+00103ZZZ (corte de codigo)
+
+Te da el registro 100 por ejemplo, empezas a leer desde ahi, buscando que coincida la clave, y si encontras ZZZ dejas de buscar.
+
+Si el cod existe en el archivo:
+->dejo sola la primera ocurrencia de la clave en la lista acumulando la cantida y actualizo el archivo.
+
+Si el cod no existe en el archivo:
+-> elimino todas las ocurrencias de la lista y acolan CLAVE|CANT ACUMULADO
+
+
+*/
