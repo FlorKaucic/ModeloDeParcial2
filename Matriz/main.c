@@ -11,8 +11,11 @@ int main()
 {
     int i, j, cantF, cantC;
     int m[FIL][COL]={{1,2,3,4,5,6},{7,8,9,10,11,12},{13,14,15,16,17,18},{19,20,21,22,23,24}};
-    printf("Ingresar posicion del vertice de la forma i,j: ");
-    scanf("%d,%d",&i,&j);
+    mostrarSubMatriz(m, FIL, COL);
+    do{
+        printf("\n\nIngresar posicion del vertice de la forma i,j: ");
+        scanf("%d,%d",&i,&j);
+    }while(i>=FIL||j>=COL);
     int * subm = mayorSubMatriz(m, COL, FIL, i, j, &cantF, &cantC);
     printf("\n\nMatriz resultante:");
     mostrarSubMatriz(subm, cantF, cantC);
@@ -22,77 +25,34 @@ int main()
 
 int * mayorSubMatriz(int m[][COL], int col, int fil, int i, int j, int * cantF, int * cantC)
 {
-    int col1, col2, fil1, fil2;
+    int ci, cf, fi, ff;
 
-    col1 = j+1;
-    col2 = col-j;
-    fil1 = i+1;
-    fil2 = fil-i;
-
-    //printf("\nTam1: %d\nTam2: %d\nTam3: %d\nTam4: %d", fil1 * col1, fil1 * col2, fil2 * col1, fil2 * col2);
-
-    if(fil1 * col1>fil1 * col2)
-        if(fil1 * col1>fil2 * col1)
-            if(fil1 * col1>fil2 * col2)
-            {
-                //printf("\n\nTAM1");
-                *cantF = fil1;
-                *cantC = col1;
-                return crearSubMatriz(m, fil1 * col1, 0, i, 0, j);
-            }
-            else
-            {
-                //printf("\n\nTAM4");
-                *cantF = fil2;
-                *cantC = col2;
-                return crearSubMatriz(m, fil2 * col2, i, fil-1, j, col-1);
-            }
-        else
-            if(fil2 * col1>fil2 * col2)
-            {
-                //printf("\n\nTAM3");
-                *cantF = fil2;
-                *cantC = col1;
-                return crearSubMatriz(m, fil2 * col1, i, fil-1, 0, j);
-            }
-            else
-            {
-                //printf("\n\nTAM4");
-                *cantF = fil2;
-                *cantC = col2;
-                return crearSubMatriz(m, fil2 * col2, i, fil-1, j, col-1);
-            }
+    if(j+1>col-j)
+    {
+        ci = 0;
+        cf = j;
+    }
     else
-        if(fil1 * col2>fil2 * col1)
-            if(fil1 * col2>fil2 * col2)
-            {
-                //printf("\n\nTAM2");
-                *cantF = fil1;
-                *cantC = col2;
-                return crearSubMatriz(m, fil1 * col2, 0, i, j, col-1);
-            }
-            else
-            {
-                //printf("\n\nTAM4");
-                *cantF = fil2;
-                *cantC = col2;
-                return crearSubMatriz(m, fil2 * col2, i, fil-1, j, col-1);
-            }
-        else
-            if(fil2 * col1>fil2 * col2)
-            {
-                //printf("\n\nTAM3");
-                *cantF = fil2;
-                *cantC = col1;
-                return crearSubMatriz(m, fil2 * col1, i, fil-1, 0, j);
-            }
-            else
-            {
-                //printf("\n\nTAM4");
-                *cantF = fil2;
-                *cantC = col2;
-                return crearSubMatriz(m, fil2 * col2, i, fil-1, j, col-1);
-            }
+    {
+        ci = j;
+        cf = col-1;
+    }
+
+    if(i+1>fil-i)
+    {
+        fi = 0;
+        ff = i;
+    }
+    else
+    {
+        fi = i;
+        ff = fil-1;
+    }
+
+    *cantF = ff - fi + 1;
+    *cantC = cf - ci + 1;
+
+    return crearSubMatriz(m, (*cantF)*(*cantC), fi, ff, ci, cf);
 }
 
 int * crearSubMatriz(int m[][COL], int tam, int fi, int ff, int ci, int cf)

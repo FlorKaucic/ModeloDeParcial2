@@ -7,15 +7,13 @@ Rotas la cantidad de posiciones como indica el numero
 
 2. Dada una matriz y un i,j retornar de forma dinamica la mayor submatriz que tenga como vertice al i,j dado
 
-3. Dada una lista (clave cant (nroreg(5char) + cod(3letras))) simplemente enlazada desordenada con claves repetidas y un archivo (donde la clave de la lista coincide con el numero de registro (cant))
+3. Dada una lista (clave cant) (la clave está compuesta por: (nroreg(5char) + cod(3letras))) simplemente enlazada desordenada con claves repetidas y un archivo (donde la clave de la lista coincide con el numero de registro (clave cant))
 
 Ejemplo
 00100AAA
 00101BEB
 00102CEO
 00103ZZZ (corte de codigo)
-
-Te da el registro 100 por ejemplo, empezas a leer desde ahi, buscando que coincida la clave, y si encontras ZZZ dejas de buscar.
 
 Si el cod existe en el archivo:
 ->dejo sola la primera ocurrencia de la clave en la lista acumulando la cantida y actualizo el archivo.

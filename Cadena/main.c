@@ -3,6 +3,7 @@
 
 #define TAM 10
 
+char * rotarCadena(const char * cad, int n);
 
 int main()
 {
@@ -12,9 +13,11 @@ int main()
     gets(cadena);
     printf("Ingrese un numero entero: ");
     scanf("%d", &numero);
-
-
-
-    printf("Cadena girada: %s", cadena);
+    printf("Cadena girada: %s", rotarCadena(cadena, numero));
     return 0;
+}
+
+char * rotarCadena(const char * cad, int n)
+{
+
 }
