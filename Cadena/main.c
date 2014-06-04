@@ -20,18 +20,18 @@ int main()
 char * rotarCadena(char * cad, int len, int n)
 {
     char aux, * inicio = cad;
-    int flag, i;
+    int dir, i;
     if(len==0)
         return inicio;
 
     if((n%2)==0)
-        flag = 1;
+        dir = 1;
     else
-        flag = 0;
+        dir = 0;
 
     if(n<0)
     {
-        flag = !flag;
+        dir = !dir;
         n = -n;
     }
 
@@ -39,11 +39,11 @@ char * rotarCadena(char * cad, int len, int n)
 
     if(n>(len/2))
     {
-        flag = !flag;
+        dir = !dir;
         n = len-n;
     }
 
-    if(flag)
+    if(dir) // dir = 1 => derecha // dir = 0 => izquierda
     {
         // Gira a la derecha
         printf("\nGira a la derecha %d posiciones",n);
