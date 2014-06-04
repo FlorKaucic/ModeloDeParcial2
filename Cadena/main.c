@@ -3,8 +3,7 @@
 
 #define TAM 10
 
-char * rotarCadena(char *, int);
-int str_len(char *);
+char * rotarCadena(char *, int, int);
 
 int main()
 {
@@ -14,22 +13,41 @@ int main()
     gets(cadena);
     printf("Ingrese un numero entero: ");
     scanf("%d", &numero);
-    printf("Cadena girada: %s", rotarCadena(cadena, numero));
+    printf("\n\nCadena girada: \"%s\"", rotarCadena(cadena, sizeof(cadena)/sizeof(char)-1,numero));
     return 0;
 }
 
-char * rotarCadena(char * cad, int n)
+char * rotarCadena(char * cad, int len, int n)
 {
-    char * inicio = cad;
-    char aux;
-    int i;
-    int len=str_len(cad);
+    char aux, * inicio = cad;
+    int flag, i;
     if(len==0)
         return inicio;
+
     if((n%2)==0)
+        flag = 1;
+    else
+        flag = 0;
+
+    if(n<0)
     {
-        // Es par, gira a la derecha
-        for(i=0;i<(n%len);i++)
+        flag = !flag;
+        n = -n;
+    }
+
+    n = n%len;
+
+    if(n>(len/2))
+    {
+        flag = !flag;
+        n = len-n;
+    }
+
+    if(flag)
+    {
+        // Gira a la derecha
+        printf("\nGira a la derecha %d posiciones",n);
+        for(i=0;i<n;i++)
         {
             cad = inicio + len - 1;
             aux = *cad;
@@ -43,8 +61,9 @@ char * rotarCadena(char * cad, int n)
     }
     else
     {
-        // Es impar, gira a la izquierda
-        for(i=0;i<(n%len);i++)
+        // Gira a la izquierda
+        printf("\nGira a la izquierda %d posiciones",n);
+        for(i=0;i<n;i++)
         {
             cad = inicio;
             aux = *cad;
@@ -57,15 +76,4 @@ char * rotarCadena(char * cad, int n)
         }
     }
     return inicio;
-}
-
-int str_len(char * c)
-{
-    int i = 0;
-    while(*c)
-    {
-        i++;
-        c++;
-    }
-    return i;
 }
