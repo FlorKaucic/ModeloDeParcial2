@@ -3,24 +3,28 @@
 
 #define TAM 10
 
-char * rotarCadena(char *, int, int);
+char * rotarCadena(char *, int);
+int str_len(char *);
 
 int main()
 {
     int numero, der_izq;
     char cadena[TAM+1];
     printf("Ingrese la cadena de 10 caracteres: ");
+    fflush(stdin);
     gets(cadena);
     printf("Ingrese un numero entero: ");
     scanf("%d", &numero);
-    printf("\n\nCadena girada: \"%s\"", rotarCadena(cadena, sizeof(cadena)/sizeof(char)-1,numero));
+    printf("\n\nCadena girada: \"%s\"", rotarCadena(cadena, numero));
     return 0;
 }
 
-char * rotarCadena(char * cad, int len, int n)
+char * rotarCadena(char * cad, int n)
 {
     char aux, * inicio = cad;
-    int dir, i;
+    int dir, i, len;
+
+    len = str_len(cad);
     if(len==0)
         return inicio;
 
@@ -76,4 +80,15 @@ char * rotarCadena(char * cad, int len, int n)
         }
     }
     return inicio;
+}
+
+int str_len(char * c)
+{
+    int i = 0;
+    while(*c)
+    {
+        i++;
+        c++;
+    }
+    return i;
 }
